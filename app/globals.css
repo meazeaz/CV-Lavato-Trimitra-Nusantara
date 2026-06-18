@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-heading: var(--heading);
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Poppins", system-ui, sans-serif;
+  --shadow-warm: 0 10px 30px -10px rgba(244, 162, 97, 0.25), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-warm-lg: 0 25px 50px -12px rgba(244, 162, 97, 0.35), 0 8px 20px rgba(0,0,0,0.06);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 1rem;
+  --background: oklch(0.992 0.012 90);
+  --foreground: oklch(0.36 0.04 285);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.36 0.04 285);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.36 0.04 285);
+  --primary: oklch(0.748 0.135 55); /* Warna Oranye Khas */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.65 0.09 185); /* Warna Teal Khas */
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.97 0.015 80);
+  --muted-foreground: oklch(0.5 0.03 285);
+  --accent: oklch(0.92 0.06 60);
+  --accent-foreground: oklch(0.36 0.04 285);
+  --border: oklch(0.92 0.02 80);
+  --input: oklch(0.92 0.02 80);
+  --heading: oklch(0.36 0.05 45); /* Warna Coklat Khas */
+  --offwhite: oklch(0.982 0.022 85);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
   }
+  h1, h2, h3, h4 { font-family: var(--font-display); color: var(--color-heading); }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-reveal {
+  animation: fade-in-up 0.8s ease-out both;
+}
+
+@utility reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+@utility reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
