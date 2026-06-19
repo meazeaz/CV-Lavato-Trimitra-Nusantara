@@ -1,10 +1,37 @@
 import React from "react";
 
-// Data Konstan untuk Layanan (contoh dari blueprint Lovable)
+// Data Konstan untuk Layanan (Diperbarui sesuai Profil Perusahaan)
 const SERVICES_DATA = [
-  { icon: "📦", title: "General Trading", desc: "Distribusi barang industri, alat safety, material bangunan, dan perlengkapan kantor." },
-  { icon: "🚚", title: "Supplier", desc: "Pengadaan barang volume besar untuk proyek. Harga kompetitif, pengiriman terpercaya, dan syarat fleksibel." },
-  { icon: "👷", title: "Kontraktor", desc: "Renovasi, instalasi, pengecatan, dan proyek konstruksi skala kecil hingga menengah." },
+  { 
+    icon: "🏗️", 
+    title: "Kontraktor & Pengadaan", 
+    desc: "Melayani pengadaan barang dan jasa, kebutuhan operasional kantor, hingga perlengkapan dapur dan distribusi." // [cite: 56, 57, 58, 59]
+  },
+  { 
+    icon: "💼", 
+    title: "Jasa Konsultasi", 
+    desc: "Memberikan pendampingan administrasi usaha, konsultasi manajemen bisnis, manajemen proyek (PMO), audit, dan studi kelayakan." // [cite: 60, 61, 62, 63, 64, 65]
+  },
+  { 
+    icon: "📦", 
+    title: "Trading & Supplier", 
+    desc: "Distribusi material konstruksi, suplai alat tulis kantor (ATK), penyediaan peralatan industri, serta layanan logistik dan pergudangan." // [cite: 66, 67, 68, 69, 70]
+  },
+  { 
+    icon: "✨", 
+    title: "Cleaning Service", 
+    desc: "Layanan kebersihan gedung & perkantoran, perawatan fasad kaca, deep cleaning pasca konstruksi, dan penyediaan tenaga kebersihan terlatih." // [cite: 71, 72, 73, 74, 75]
+  },
+  { 
+    icon: "🛡️", 
+    title: "Security Service", 
+    desc: "Penyediaan tenaga keamanan profesional untuk penjagaan area, pengawalan VVIP (Bodyguard), manajemen keamanan event, dan konsultasi sistem." // [cite: 76, 77, 78, 79, 80, 81]
+  },
+  { 
+    icon: "🍲", 
+    title: "Program Pemerintah", 
+    desc: "Dukungan operasional untuk Program MBG & SPPG, termasuk tenaga dapur, manajemen distribusi, pengadaan bahan baku, dan dapur umum." // [cite: 82, 83, 84, 85, 86]
+  },
 ];
 
 export default function Services() {
@@ -18,7 +45,7 @@ export default function Services() {
             Layanan Kami
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-heading leading-tight">
-            Solusi lengkap untuk kebutuhan bisnis Anda
+            Mitra Profesional untuk Setiap Kebutuhan Usaha
           </h2>
         </div>
         
