@@ -1,47 +1,57 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react"; // Import ikon panah
 
 export default function Hero() {
   return (
-    // Tambahkan animasi fade-in dan slide-up saat halaman pertama dimuat
-    <section className="px-6 md:px-20 py-16 md:py-24 max-w-4xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
-      <Badge className="bg-[#F3E5D8] text-[#D46B4A] hover:bg-[#e8d5c4] transition-colors mb-6 border-none px-4 py-1 font-semibold tracking-wider text-xs cursor-default">
-        TRADING • SUPPLIER • KONTRAKTOR
-      </Badge>
+    // Gunakan min-h-screen untuk tinggi penuh, relative untuk overlay, overflow-hidden untuk gambar
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       
-      <h2 className="font-playfair text-5xl md:text-7xl font-bold text-[#4a3b32] leading-[1.1] mb-6">
-        Mitra Terpercaya untuk <span className="text-[#E07A5F]">General Trading</span>, Supply Chain & Konstruksi
-      </h2>
-      
-      <p className="text-lg text-stone-600 mb-10 max-w-2xl leading-relaxed">
-        Melayani Bogor, Jakarta, dan seluruh Indonesia dengan integritas, kecepatan, dan layanan profesional.
-      </p>
-      
-      <div className="flex flex-wrap gap-4 mb-16">
-        {/* Tambahkan efek hover membesar (hover:scale-105) pada tombol */}
-        <Button className="bg-[#E07A5F] hover:bg-[#c96a51] rounded-full px-8 py-6 text-base text-white transition-all hover:scale-105 hover:shadow-lg duration-300">
-          Ajukan Penawaran →
-        </Button>
-        <Button variant="outline" className="rounded-full px-8 py-6 text-base border-teal-600 text-teal-700 hover:bg-teal-50 transition-all hover:scale-105 duration-300">
-          Layanan Kami
-        </Button>
+      {/* Gambar Latar Belakang dan Overlay Warna */}
+      <div className="absolute inset-0 z-0">
+        <Image 
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+          alt="Bangunan Pencakar Langit Modern"
+          layout="fill"
+          objectFit="cover"
+          priority // Memprioritaskan pemuatan gambar ini
+          className="object-cover"
+        />
+        {/* Overlay warna teal/biru tua yang digelapkan, sesuaikan opasitas sesuai kebutuhan */}
+        <div className="absolute inset-0 bg-[#0c1524]/85 z-10" />
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-stone-200 pt-10">
-        {/* Tambahkan efek interaktif pada statistik */}
-        {[
-          { num: "10+", label: "Tahun Pengalaman" },
-          { num: "200+", label: "Proyek Didukung" },
-          { num: "50+", label: "Klien Puas" },
-          { num: "1x24", label: "Jam Respons" }
-        ].map((stat, i) => (
-          <div key={i} className="group cursor-default">
-            <h3 className="font-playfair text-3xl font-bold text-[#4a3b32] group-hover:text-[#E07A5F] transition-colors duration-300">
-              {stat.num}
-            </h3>
-            <p className="text-xs text-stone-500 mt-1">{stat.label}</p>
-          </div>
-        ))}
+      {/* Konten teks yang dipusatkan (relative z-20 agar di atas overlay) */}
+      <div className="relative z-20 text-center px-6 md:px-20 py-16 md:py-24 max-w-4xl">
+        
+        {/* Hapus Badge sesuai screenshot contoh */}
+        
+        {/* Judul Utama dengan teks kuning emas seperti di contoh */}
+        <h2 className="font-playfair text-5xl md:text-7xl font-bold text-white leading-[1.1] mb-6">
+          Mitra Profesional untuk <span className="text-[#facc15]">Setiap Kebutuhan Usaha</span>
+        </h2>
+        
+        {/* Teks Deskripsi baru dengan teks putih seperti di contoh */}
+        <p className="text-lg text-white mb-10 max-w-2xl mx-auto leading-relaxed opacity-90">
+          Menyediakan layanan terintegrasi mulai dari konstruksi, konsultasi manajemen, hingga dukungan program strategis pemerintah dengan standar profesionalisme tinggi.
+        </p>
+        
+        {/* Dua Tombol dengan gaya seperti di contoh */}
+        <div className="flex flex-wrap gap-4 justify-center">
+          
+          {/* Tombol Pertama: Kuning Penuh */}
+          <Button className="bg-[#facc15] hover:bg-[#eab308] rounded-full px-8 py-6 text-base text-[#4a3b32] font-semibold transition-all hover:scale-105 hover:shadow-lg duration-300">
+            Pelajari Layanan Kami
+          </Button>
+          
+          {/* Tombol Kedua: Outline Transparan dengan Ikon Panah */}
+          <Button variant="outline" className="group rounded-full px-8 py-6 text-base border-[#facc15] text-white hover:bg-[#facc15]/10 transition-all hover:scale-105 duration-300">
+            Hubungi Kami
+            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" /> {/* Ikon panah dengan efek animasi */}
+          </Button>
+        </div>
+
+        {/* Hapus bagian statistik sesuai screenshot contoh */}
       </div>
     </section>
   );
