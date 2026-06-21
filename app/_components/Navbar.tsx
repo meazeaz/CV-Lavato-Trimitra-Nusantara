@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react"; // Import ikon menu HP
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
@@ -14,7 +14,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Efek transisi Navbar saat di-scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -25,7 +24,7 @@ export default function Navbar() {
 
   const handleRfqScroll = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     e.preventDefault();
-    setIsMobileMenuOpen(false); // Tutup menu HP jika sedang terbuka
+    setIsMobileMenuOpen(false);
     if (pathname === "/") {
       const element = document.getElementById("rfq");
       if (element) {
@@ -40,7 +39,7 @@ export default function Navbar() {
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
       isScrolled ? "bg-white/95 backdrop-blur-md shadow-md py-3" : "bg-white py-5 shadow-sm"
     }`}>
-      <div className="px-6 md:px-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-20 flex items-center justify-between">
         
         {/* Logo & Nama Brand */}
         <Link href="/" className="flex items-center gap-3 cursor-pointer group">
@@ -69,7 +68,6 @@ export default function Navbar() {
               className={`relative transition-colors hover:text-[#facc15] py-2 ${pathname === link.path ? 'text-[#facc15]' : ''}`}
             >
               {link.name}
-              {/* Garis bawah animasi saat aktif */}
               {pathname === link.path && (
                 <motion.div layoutId="underline" className="absolute left-0 bottom-0 w-full h-[2px] bg-[#facc15]" />
               )}
@@ -80,13 +78,13 @@ export default function Navbar() {
           </Button>
         </div>
 
-        {/* Tombol Menu HP */}
-        <button className="md:hidden text-[#0c1524]" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        {/* Tombol Menu HP / Mobile */}
+        <button className="md:hidden text-[#0c1524] p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
         </button>
       </div>
 
-      {/* Dropdown Menu HP (Animasi Framer Motion) */}
+      {/* Dropdown Menu HP / Mobile (SUDAH DIPERBAIKI) */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
@@ -95,11 +93,18 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white border-t border-slate-100 overflow-hidden shadow-xl"
           >
-            <div className="flex flex-col px-6 py-4 gap-4 text-sm font-semibold text-slate-700">
-              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#facc15]">Beranda</Link>
-              <Link href="/tentang" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#facc15]">Tentang Kami</Link>
-              <Link href="/layanan" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#facc15]">Layanan</Link>
-              <Button onClick={handleRfqScroll} className="w-full bg-[#0c1524] text-white mt-2">Hubungi Kami</Button>
+            <div className="flex flex-col px-6 py-4 gap-2 text-sm font-semibold text-slate-700">
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-[#facc15] py-2.5 border-b border-slate-50 ${pathname === '/' ? 'text-[#facc15]' : ''}`}>Beranda</Link>
+              <Link href="/tentang" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-[#facc15] py-2.5 border-b border-slate-50 ${pathname === '/tentang' ? 'text-[#facc15]' : ''}`}>Tentang Kami</Link>
+              <Link href="/layanan" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-[#facc15] py-2.5 border-b border-slate-50 ${pathname === '/layanan' ? 'text-[#facc15]' : ''}`}>Layanan</Link>
+              {/* Menambahkan menu Proyek di mobile */}
+              <Link href="/projek" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-[#facc15] py-2.5 border-b border-slate-50 ${pathname === '/projek' ? 'text-[#facc15]' : ''}`}>Proyek</Link>
+              {/* Menambahkan menu Kontak Kami di mobile */}
+              <Link href="/kontak" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-[#facc15] py-2.5 border-b border-slate-50 ${pathname === '/kontak' ? 'text-[#facc15]' : ''}`}>Kontak Kami</Link>
+              
+              <Button onClick={handleRfqScroll} className="w-full bg-[#0c1524] hover:bg-[#1e293b] text-white mt-4 py-6 text-base font-semibold">
+                Hubungi Kami
+              </Button>
             </div>
           </motion.div>
         )}
