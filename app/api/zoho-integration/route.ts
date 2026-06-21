@@ -37,7 +37,8 @@ export async function POST(request: Request) {
           Description: `Layanan Utama: ${layanan}\nTarget Anggaran: ${budget}\nBatas Waktu: ${deadline}\n\nDetail Kebutuhan:\n${deskripsi}`,
           Lead_Source: "Website Form"
         }
-      ]
+      ],
+      trigger: ["workflow"]
     };
 
     // 4. Kirim data teks ke Zoho CRM
